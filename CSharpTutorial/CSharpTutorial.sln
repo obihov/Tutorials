@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.29215.179
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Encapsulation", "Encapsulation\Encapsulation.csproj", "{52E8489E-856D-4AA9-A049-0CDA69CFAD5E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleStaticClass", "ExampleStaticClass\ExampleStaticClass.csproj", "{E8F374BF-B508-486F-8DBE-657C13D50396}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{52E8489E-856D-4AA9-A049-0CDA69CFAD5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52E8489E-856D-4AA9-A049-0CDA69CFAD5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52E8489E-856D-4AA9-A049-0CDA69CFAD5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8F374BF-B508-486F-8DBE-657C13D50396}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8F374BF-B508-486F-8DBE-657C13D50396}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8F374BF-B508-486F-8DBE-657C13D50396}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8F374BF-B508-486F-8DBE-657C13D50396}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
