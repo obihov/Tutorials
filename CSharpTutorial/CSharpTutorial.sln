@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Encapsulation", "Encapsulat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleStaticClass", "ExampleStaticClass\ExampleStaticClass.csproj", "{E8F374BF-B508-486F-8DBE-657C13D50396}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdapterPattern", "AdapterPattern\AdapterPattern.csproj", "{B04AF59B-7033-403A-93BA-0CED55E9DFA3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{E8F374BF-B508-486F-8DBE-657C13D50396}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E8F374BF-B508-486F-8DBE-657C13D50396}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E8F374BF-B508-486F-8DBE-657C13D50396}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B04AF59B-7033-403A-93BA-0CED55E9DFA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B04AF59B-7033-403A-93BA-0CED55E9DFA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B04AF59B-7033-403A-93BA-0CED55E9DFA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B04AF59B-7033-403A-93BA-0CED55E9DFA3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
