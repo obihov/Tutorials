@@ -52,9 +52,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="1_Thread\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="ThreadPerformance\performanceMeasure1.png" />
     <Content Include="ThreadSleeping\threadsleepContextSwitching.png" />
