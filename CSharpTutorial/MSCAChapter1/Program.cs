@@ -1,4 +1,5 @@
-﻿using MSCAChapter1.ThreadPerformance;
+﻿using MSCAChapter1.ParameterizedThread;
+using MSCAChapter1.ThreadPerformance;
 using MSCAChapter1.ThreadSleeping;
 using System;
 using System.Diagnostics;
@@ -14,13 +15,27 @@ namespace MSCAChapter1
 
         static void Main(string[] args)
         {
-            #region This Naturally Shows Performance measures for different Thread implementation approaches
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine("******************************************");
-            Console.WriteLine("CODE REGION 1");
-            Console.WriteLine("******************************************");
-            Console.ForegroundColor = ConsoleColor.White;
+            ////Thread performance example
+            //ExecuteCode1();
+            //PromptUserInput();
 
+            ////Thread sleep example
+            //ExecutedCode2();
+            //PromptUserInput();
+
+            //Thread sleep varying example
+            //ExecuteCode3();
+            //PromptUserInput();
+
+            //Parameterized thread example
+            ExecuteCode4();
+        }
+
+        private static void ExecuteCode1()
+        {
+            InitializeConsoleMessage(1);
+
+            #region This Naturally Shows Performance measures for different Thread implementation approaches
             Console.WriteLine("--Approach 1: Run Multiple Threads Simultaneously--");
             approachTimer1.Start();
             ThreadPerformanceExample.Approach1();
@@ -43,24 +58,13 @@ namespace MSCAChapter1
             Console.WriteLine($"Time to complete Approach 2:\t{approachTimer2.ElapsedMilliseconds}ms");
             Console.WriteLine($"Time to complete Approach 3:\t{approachTimer3.ElapsedMilliseconds}ms");
             #endregion
+        }
 
-            Console.WriteLine();
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("******************************************");
-            Console.WriteLine("Press Any Key to Execute Next Code Region");
-            Console.WriteLine("******************************************");
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.ReadKey();
-            Console.WriteLine();
-
+        private static void ExecutedCode2()
+        {
+            InitializeConsoleMessage(2);
 
             #region This example shows how to explictly force a thread to suspend. 
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine("******************************************");
-            Console.WriteLine("CODE REGION 2");
-            Console.WriteLine("******************************************");
-            Console.ForegroundColor = ConsoleColor.White;
-
             //Thread1 suspends for 5secs to allow other threads execute for that time before it resumes again.
             Thread thread1 = new Thread(new ThreadStart(ThreadSleepingExample.Thread1));
             Thread thread2 = new Thread(new ThreadStart(ThreadSleepingExample.Thread2));
@@ -69,12 +73,56 @@ namespace MSCAChapter1
             thread1.Join();
             thread2.Join();
             #endregion
+        }
 
+        private static void ExecuteCode3()
+        {
+            InitializeConsoleMessage(3);
+
+            #region This example shows how to explictly force a thread to suspend. 
+            //Thread1 suspends for 5secs to allow other threads execute for that time before it resumes again.
+            Thread thread1 = new Thread(new ThreadStart(ThreadSleepingVaryingExample.SmallDataSet));
+            Thread thread2 = new Thread(new ThreadStart(ThreadSleepingVaryingExample.LargeDataSet));
+            thread1.Start();
+            thread2.Start();
+            thread1.Join();
+            thread2.Join();
+            #endregion
+        }
+
+        private static void PromptUserInput()
+        {
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("******************************************");
+            Console.WriteLine("Press Any Key to Execute Next Code Region");
+            Console.WriteLine("******************************************");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.ReadKey();
+            Console.WriteLine();
+        }
+
+        private static void InitializeConsoleMessage(int codeInExecution)
+        {
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("******************************************");
+            Console.WriteLine($"CODE REGION {codeInExecution}");
+            Console.WriteLine("******************************************");
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+
+        private static void ExecuteCode4()
+        {
+            InitializeConsoleMessage(4);
+
+            #region This example shows you how to use an overloaded method of Thread that accepts a parameter that can be passed to the executed method
+            Thread thread = new Thread(new ParameterizedThreadStart(ParameterThreads.PrintHello));
+            thread.Start("5");
+            thread.Join();
+            #endregion
         }
 
 
 
-
-        
     }
 }
