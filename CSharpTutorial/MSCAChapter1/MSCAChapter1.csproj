@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BackgroundForegroundThread\BackgroundForeground.cs" />
     <Compile Include="ParameterizedThread\ParameterThreads.cs" />
     <Compile Include="ThreadPerformance\Methods.cs" />
     <Compile Include="Program.cs" />
@@ -54,9 +55,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BackgroundForegroundThread\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="ThreadPerformance\performanceMeasure1.png" />
     <Content Include="ThreadSleeping\threadsleepContextSwitching.png" />

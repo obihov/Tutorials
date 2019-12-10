@@ -1,4 +1,5 @@
-﻿using MSCAChapter1.ParameterizedThread;
+﻿using MSCAChapter1.BackgroundForegroundThread;
+using MSCAChapter1.ParameterizedThread;
 using MSCAChapter1.ThreadPerformance;
 using MSCAChapter1.ThreadSleeping;
 using System;
@@ -15,20 +16,104 @@ namespace MSCAChapter1
 
         static void Main(string[] args)
         {
-            ////Thread performance example
-            //ExecuteCode1();
-            //PromptUserInput();
+            //Thread performance example
+            ExecuteCode1();
+            PromptUserInput();
 
-            ////Thread sleep example
-            //ExecutedCode2();
-            //PromptUserInput();
+            //Thread sleep example
+            ExecutedCode2();
+            PromptUserInput();
 
             //Thread sleep varying example
-            //ExecuteCode3();
-            //PromptUserInput();
+            ExecuteCode3();
+            PromptUserInput();
 
             //Parameterized thread example
             ExecuteCode4();
+            PromptUserInput();
+
+            //Foreground thread example
+            ExecuteCode6();
+            PromptUserInput();
+
+            //Background thread example
+            /** NOTE for running below code:
+             * This code will print out all messages in childthread, which is not intended for this example.
+             * This happens only when you have other lines of code in the main thread running like below codes. 
+             * The Solution is to place ExecuteCode5(); call at the very bottom of the main method. Make sure no other loc is executed after that call.
+             * */
+            ExecuteCode5();
+        }
+
+        private static void ExecuteCode6()
+        {
+            InitializeConsoleMessage(6);
+
+            #region Example shows a foreground thread. No need to use thread.Join to keep alive while running a foreground thread. Automatically apps don't exit while a foreground thread is actively running.
+            Thread thread = new Thread(new ThreadStart(BackgroundForeground.SomeMethodToRun));
+            thread.IsBackground = false;
+            thread.Name = "A foreground thread";
+            thread.Start();
+
+
+            //Note without a thread.join, the below (line of code) loc will execute in the main thread.
+            //This could very well happen before any loc in the child thread executes.
+            //If the child thread was a background thread, then the app will exit after it has executed the below loc in its main thread.
+            //But in a child thread that is a foreground thread, then the app will automatically wait for all loc in the child thread to execute even though it may have already executed the loc in its main thread.
+            //Use a Join, to force main thread from executing any of its loc until child thread has finished. This is useful in background threads.
+            //thread.Join();
+            Console.WriteLine("Main thread executing...");
+            #endregion
+        }
+
+        private static void ExecuteCode5()
+        {
+            InitializeConsoleMessage(5);
+
+            #region Example shows a background thread. To keep app alive while a background thread is running, you must use a thread.Join statement.
+            Thread thread = new Thread(new ThreadStart(BackgroundForeground.SomeMethodToRun));
+            thread.IsBackground = true;
+            thread.Name = "A background thread";
+            thread.Start();
+
+            //Note without a thread.join, the below (line of code) loc will execute in the main thread.
+            //This could very well happen before any loc in the child thread executes.
+            //If the child thread was a background thread, then the app will exit after it has executed the below loc in its main thread.
+            //But in a child thread that is a foreground thread, then the app will automatically wait for all loc in the child thread to execute even though it may have already executed the loc in its main thread.
+            //Use a Join, to force main thread from executing any of its loc until child thread has finished. This is useful in background threads.
+            //thread.Join();
+            Console.WriteLine("Main thread executing...");
+            #endregion
+        }
+
+        private static void ExecuteCode3()
+        {
+            InitializeConsoleMessage(3);
+
+            #region This example shows how to explictly force a thread to suspend. 
+            //Thread1 suspends for 5secs to allow other threads execute for that time before it resumes again.
+            Thread thread1 = new Thread(new ThreadStart(ThreadSleepingVaryingExample.SmallDataSet));
+            Thread thread2 = new Thread(new ThreadStart(ThreadSleepingVaryingExample.LargeDataSet));
+            thread1.Start();
+            thread2.Start();
+            thread1.Join();
+            thread2.Join();
+            #endregion
+        }
+
+        private static void ExecutedCode2()
+        {
+            InitializeConsoleMessage(2);
+
+            #region This example shows how to explictly force a thread to suspend. 
+            //Thread1 suspends for 5secs to allow other threads execute for that time before it resumes again.
+            Thread thread1 = new Thread(new ThreadStart(ThreadSleepingExample.Thread1));
+            Thread thread2 = new Thread(new ThreadStart(ThreadSleepingExample.Thread2));
+            thread1.Start();
+            thread2.Start();
+            thread1.Join();
+            thread2.Join();
+            #endregion
         }
 
         private static void ExecuteCode1()
@@ -57,36 +142,6 @@ namespace MSCAChapter1
             Console.WriteLine($"Time to complete Approach 1:\t{approachTimer1.ElapsedMilliseconds}ms");
             Console.WriteLine($"Time to complete Approach 2:\t{approachTimer2.ElapsedMilliseconds}ms");
             Console.WriteLine($"Time to complete Approach 3:\t{approachTimer3.ElapsedMilliseconds}ms");
-            #endregion
-        }
-
-        private static void ExecutedCode2()
-        {
-            InitializeConsoleMessage(2);
-
-            #region This example shows how to explictly force a thread to suspend. 
-            //Thread1 suspends for 5secs to allow other threads execute for that time before it resumes again.
-            Thread thread1 = new Thread(new ThreadStart(ThreadSleepingExample.Thread1));
-            Thread thread2 = new Thread(new ThreadStart(ThreadSleepingExample.Thread2));
-            thread1.Start();
-            thread2.Start();
-            thread1.Join();
-            thread2.Join();
-            #endregion
-        }
-
-        private static void ExecuteCode3()
-        {
-            InitializeConsoleMessage(3);
-
-            #region This example shows how to explictly force a thread to suspend. 
-            //Thread1 suspends for 5secs to allow other threads execute for that time before it resumes again.
-            Thread thread1 = new Thread(new ThreadStart(ThreadSleepingVaryingExample.SmallDataSet));
-            Thread thread2 = new Thread(new ThreadStart(ThreadSleepingVaryingExample.LargeDataSet));
-            thread1.Start();
-            thread2.Start();
-            thread1.Join();
-            thread2.Join();
             #endregion
         }
 
