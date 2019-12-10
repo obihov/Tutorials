@@ -43,16 +43,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ParameterizedThread\ParameterThreads.cs" />
     <Compile Include="ThreadPerformance\Methods.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ThreadPerformance\ThreadPerformanceExample.cs" />
     <Compile Include="ThreadSleeping\ThreadSleepingExample.cs" />
+    <Compile Include="ThreadSleeping\ThreadSleepingVaryingExample.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="BackgroundForegroundThread\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="ThreadPerformance\performanceMeasure1.png" />
     <Content Include="ThreadSleeping\threadsleepContextSwitching.png" />
