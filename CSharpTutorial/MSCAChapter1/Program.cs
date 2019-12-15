@@ -1,5 +1,6 @@
 ﻿using MSCAChapter1.BackgroundForegroundThread;
 using MSCAChapter1.ParameterizedThread;
+using MSCAChapter1.StoppingThread;
 using MSCAChapter1.ThreadPerformance;
 using MSCAChapter1.ThreadSleeping;
 using System;
@@ -16,33 +17,86 @@ namespace MSCAChapter1
 
         static void Main(string[] args)
         {
-            //Thread performance example
-            ExecuteCode1();
+            ////Thread performance example
+            //ExecuteCode1();
+            //PromptUserInput();
+
+            ////Thread sleep example
+            //ExecutedCode2();
+            //PromptUserInput();
+
+            ////Thread sleep varying example
+            //ExecuteCode3();
+            //PromptUserInput();
+
+            ////Parameterized thread example
+            //ExecuteCode4();
+            //PromptUserInput();
+
+            ////Foreground thread example
+            //ExecuteCode6();
+            //PromptUserInput();
+
+            //Stopping a Thread using Thread.Abort method. Avoid this approach. Use shared variable instead.
+            //ExecuteCode7();
+            //PromptUserInput();
+
+            //Stopping a Thread using shared variable. Best approach to use to stop a thread while it's running.
+            ExecuteCode8();
             PromptUserInput();
 
-            //Thread sleep example
-            ExecutedCode2();
-            PromptUserInput();
 
-            //Thread sleep varying example
-            ExecuteCode3();
-            PromptUserInput();
 
-            //Parameterized thread example
-            ExecuteCode4();
-            PromptUserInput();
+            ////Background thread example
+            ///** NOTE for running below code:
+            // * This code will print out all messages in childthread, which is not intended for this example.
+            // * This happens only when you have other lines of code in the main thread running like below codes. 
+            // * The Solution is to place ExecuteCode5(); call at the very bottom of the main method. Make sure no other loc is executed after that call.
+            // * */
+            //ExecuteCode5();
+        }
 
-            //Foreground thread example
-            ExecuteCode6();
-            PromptUserInput();
+        private static void ExecuteCode8()
+        {
+            InitializeConsoleMessage(8);
 
-            //Background thread example
-            /** NOTE for running below code:
-             * This code will print out all messages in childthread, which is not intended for this example.
-             * This happens only when you have other lines of code in the main thread running like below codes. 
-             * The Solution is to place ExecuteCode5(); call at the very bottom of the main method. Make sure no other loc is executed after that call.
-             * */
-            ExecuteCode5();
+            bool stopped = false;
+            Thread thread = new Thread(new ThreadStart(
+                    () =>
+                    {
+                        var counter = 1;
+                        while (!stopped)
+                        {
+                            ThreadStop.Run(counter++);
+                        }
+                    }
+                ));
+            thread.Name = "AbortThreadExample2";
+            thread.Start();
+            Console.WriteLine("Press any key to end running thread.");
+            Console.ReadKey(); //Can be used to keep child threads running. CPU switches from child thread back to main thread when user input is entered.
+
+            stopped = true;
+            Thread.Sleep(1000);
+            Console.WriteLine("Main thread executing...");
+        }
+
+        private static void ExecuteCode7()
+        {
+            InitializeConsoleMessage(7);
+
+            Thread thread = new Thread(new ThreadStart(
+                    () =>
+                    {
+                        var counter = 1;
+                        ThreadStop.Run(counter++);
+                    }
+                ));
+            thread.Name = "AbortThreadExample1";
+            thread.Start();
+              
+            thread.Abort();
+            Console.WriteLine("Main thread executing...");
         }
 
         private static void ExecuteCode6()

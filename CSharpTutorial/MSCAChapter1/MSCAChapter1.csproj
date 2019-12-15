@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="BackgroundForegroundThread\BackgroundForeground.cs" />
     <Compile Include="ParameterizedThread\ParameterThreads.cs" />
+    <Compile Include="StoppingThread\ThreadStop.cs" />
     <Compile Include="ThreadPerformance\Methods.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
