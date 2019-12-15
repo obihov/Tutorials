@@ -17,29 +17,29 @@ namespace MSCAChapter1
 
         static void Main(string[] args)
         {
-            ////Thread performance example
-            //ExecuteCode1();
-            //PromptUserInput();
+            //Thread performance example
+            ExecuteCode1();
+            PromptUserInput();
 
-            ////Thread sleep example
-            //ExecutedCode2();
-            //PromptUserInput();
+            //Thread sleep example
+            ExecutedCode2();
+            PromptUserInput();
 
-            ////Thread sleep varying example
-            //ExecuteCode3();
-            //PromptUserInput();
+            //Thread sleep varying example
+            ExecuteCode3();
+            PromptUserInput();
 
-            ////Parameterized thread example
-            //ExecuteCode4();
-            //PromptUserInput();
+            //Parameterized thread example
+            ExecuteCode4();
+            PromptUserInput();
 
-            ////Foreground thread example
-            //ExecuteCode6();
-            //PromptUserInput();
+            //Foreground thread example
+            ExecuteCode6();
+            PromptUserInput();
 
-            //Stopping a Thread using Thread.Abort method. Avoid this approach. Use shared variable instead.
-            //ExecuteCode7();
-            //PromptUserInput();
+            //Stopping a Thread using Thread.Abort method. Avoid this approach.Use shared variable instead.
+            ExecuteCode7();
+            PromptUserInput();
 
             //Stopping a Thread using shared variable. Best approach to use to stop a thread while it's running.
             ExecuteCode8();
@@ -47,13 +47,13 @@ namespace MSCAChapter1
 
 
 
-            ////Background thread example
-            ///** NOTE for running below code:
-            // * This code will print out all messages in childthread, which is not intended for this example.
-            // * This happens only when you have other lines of code in the main thread running like below codes. 
-            // * The Solution is to place ExecuteCode5(); call at the very bottom of the main method. Make sure no other loc is executed after that call.
-            // * */
-            //ExecuteCode5();
+            //Background thread example
+            /** NOTE for running below code:
+             * This code will print out all messages in childthread, which is not intended for this example.
+             * This happens only when you have other lines of code in the main thread running like below codes. 
+             * The Solution is to place ExecuteCode5(); call at the very bottom of the main method. Make sure no other loc is executed after that call.
+             * */
+            ExecuteCode5();
         }
 
         private static void ExecuteCode8()
