@@ -15,45 +15,87 @@ namespace MSCAChapter1
         private static Stopwatch approachTimer2 = new Stopwatch();
         private static Stopwatch approachTimer3 = new Stopwatch();
 
+        [ThreadStatic]
+        private static string PersonName;
+
         static void Main(string[] args)
         {
-            //Thread performance example
-            ExecuteCode1();
+            ////Thread performance example
+            //ExecuteCode1();
+            //PromptUserInput();
+
+            ////Thread sleep example
+            //ExecutedCode2();
+            //PromptUserInput();
+
+            ////Thread sleep varying example
+            //ExecuteCode3();
+            //PromptUserInput();
+
+            ////Parameterized thread example
+            //ExecuteCode4();
+            //PromptUserInput();
+
+            ////Foreground thread example
+            //ExecuteCode6();
+            //PromptUserInput();
+
+            ////Stopping a Thread using Thread.Abort method. Avoid this approach.Use shared variable instead.
+            //ExecuteCode7();
+            //PromptUserInput();
+
+            ////Stopping a Thread using shared variable. Best approach to use to stop a thread while it's running.
+            //ExecuteCode8();
+            //PromptUserInput();
+
+            //Uniquely associating a variable to different threads using ThreadStatic attribute
+            ExecuteCode9();
             PromptUserInput();
 
-            //Thread sleep example
-            ExecutedCode2();
-            PromptUserInput();
 
-            //Thread sleep varying example
-            ExecuteCode3();
-            PromptUserInput();
+            ////Background thread example
+            ///** NOTE for running below code:
+            // * This code will print out all messages in childthread, which is not intended for this example.
+            // * This happens only when you have other lines of code in the main thread running like below codes. 
+            // * The Solution is to place ExecuteCode5(); call at the very bottom of the main method. Make sure no other loc is executed after that call.
+            // * */
+            //ExecuteCode5();
+        }
 
-            //Parameterized thread example
-            ExecuteCode4();
-            PromptUserInput();
+        private static void ExecuteCode9()
+        {
+            InitializeConsoleMessage(9);
 
-            //Foreground thread example
-            ExecuteCode6();
-            PromptUserInput();
+            PersonName = "Unassigned";
 
-            //Stopping a Thread using Thread.Abort method. Avoid this approach.Use shared variable instead.
-            ExecuteCode7();
-            PromptUserInput();
-
-            //Stopping a Thread using shared variable. Best approach to use to stop a thread while it's running.
-            ExecuteCode8();
-            PromptUserInput();
-
-
-
-            //Background thread example
-            /** NOTE for running below code:
-             * This code will print out all messages in childthread, which is not intended for this example.
-             * This happens only when you have other lines of code in the main thread running like below codes. 
-             * The Solution is to place ExecuteCode5(); call at the very bottom of the main method. Make sure no other loc is executed after that call.
+            /*
+             * The example below show that a class field decorated as ThreadStatic can be used by different threads, as well as, the main thread to uniquely intialize variable to the field.
+             * The field will have unique value for each thread. Altering the field in one thread will not affect its use in another thread.
              * */
-            ExecuteCode5();
+
+            Console.WriteLine($"Main thread prints person name as {PersonName}.");
+            Thread t1 = new Thread(new ParameterizedThreadStart(
+                    (p) =>
+                    {
+                        PersonName = p.ToString();
+                        Console.WriteLine($"{Thread.CurrentThread.Name} prints person name as {PersonName}...");
+                    }
+                ));
+            t1.Name = "Thread 1";
+            t1.Start("Obi");
+            t1.Join();
+
+            Console.WriteLine($"Main thread prints person name as {PersonName}.");
+            Thread t2 = new Thread(new ParameterizedThreadStart(
+                    (p) =>
+                    {
+                        PersonName = p.ToString();
+                        Console.WriteLine($"{Thread.CurrentThread.Name} prints person name as {PersonName}...");
+                    }
+                ));
+            t2.Name = "Thread 2";
+            t2.Start("Sona");
+            t2.Join();
         }
 
         private static void ExecuteCode8()
@@ -94,7 +136,7 @@ namespace MSCAChapter1
                 ));
             thread.Name = "AbortThreadExample1";
             thread.Start();
-              
+
             thread.Abort();
             Console.WriteLine("Main thread executing...");
         }
