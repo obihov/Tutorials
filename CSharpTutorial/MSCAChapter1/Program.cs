@@ -15,6 +15,9 @@ namespace MSCAChapter1
         private static Stopwatch approachTimer2 = new Stopwatch();
         private static Stopwatch approachTimer3 = new Stopwatch();
 
+        [ThreadStatic]
+        private static string PersonName;
+
         static void Main(string[] args)
         {
             //Thread performance example
@@ -45,6 +48,9 @@ namespace MSCAChapter1
             ExecuteCode8();
             PromptUserInput();
 
+            //Uniquely associating a variable to different threads using ThreadStatic attribute
+            ExecuteCode9();
+            PromptUserInput();
 
 
             //Background thread example
@@ -54,6 +60,42 @@ namespace MSCAChapter1
              * The Solution is to place ExecuteCode5(); call at the very bottom of the main method. Make sure no other loc is executed after that call.
              * */
             ExecuteCode5();
+        }
+
+        private static void ExecuteCode9()
+        {
+            InitializeConsoleMessage(9);
+
+            PersonName = "Unassigned";
+
+            /*
+             * The example below show that a class field decorated as ThreadStatic can be used by different threads, as well as, the main thread to uniquely intialize variable to the field.
+             * The field will have unique value for each thread. Altering the field in one thread will not affect its use in another thread.
+             * */
+
+            Console.WriteLine($"Main thread prints person name as {PersonName}.");
+            Thread t1 = new Thread(new ParameterizedThreadStart(
+                    (p) =>
+                    {
+                        PersonName = p.ToString();
+                        Console.WriteLine($"{Thread.CurrentThread.Name} prints person name as {PersonName}...");
+                    }
+                ));
+            t1.Name = "Thread 1";
+            t1.Start("Obi");
+            t1.Join();
+
+            Console.WriteLine($"Main thread prints person name as {PersonName}.");
+            Thread t2 = new Thread(new ParameterizedThreadStart(
+                    (p) =>
+                    {
+                        PersonName = p.ToString();
+                        Console.WriteLine($"{Thread.CurrentThread.Name} prints person name as {PersonName}...");
+                    }
+                ));
+            t2.Name = "Thread 2";
+            t2.Start("Sona");
+            t2.Join();
         }
 
         private static void ExecuteCode8()
@@ -94,7 +136,7 @@ namespace MSCAChapter1
                 ));
             thread.Name = "AbortThreadExample1";
             thread.Start();
-              
+
             thread.Abort();
             Console.WriteLine("Main thread executing...");
         }
