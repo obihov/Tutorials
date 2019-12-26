@@ -102,7 +102,14 @@ namespace MSCAChapter1
         {
             InitializeConsoleMessage(8);
 
+            //a shared variable accessed by both calling (main) and target (child) thread. 
+            //Can be used to keep a target thread running, and can be used by main thread to stop a running a target thread without throwing an exception, that
+            //typically could happen if a Thread.Abort() call was used instead in the main thread to end a running child thread.
             bool stopped = false;
+
+            //avoid using a ParameterizedThreadStart delegate approach because the shared variable you will pass as an object to a method will never get changed after 
+            //the user presses a key. The method in the ParameterizedThreadStart delegate will not update the state of the shared variable because 
+            //it's not in the scope of the main thread.
             Thread thread = new Thread(new ThreadStart(
                     () =>
                     {
@@ -116,12 +123,20 @@ namespace MSCAChapter1
             thread.Name = "AbortThreadExample2";
             thread.Start();
             Console.WriteLine("Press any key to end running thread.");
-            Console.ReadKey(); //Can be used to keep child threads running. CPU switches from child thread back to main thread when user input is entered.
 
-            stopped = true;
+            //cpu will always switch between the child thread and main thread. When it switches to main thread, it listens for a user input.
+            //when it switches back to child thread, it checks the while loop before executing.
+            //so if at the time the cpu is switched to the main thread and the user presses a key, it will set the stopped variable to true, which
+            //when it switches back to the child thread, the while loop will evaluate to false and the embedded code is not executed.
+            Console.ReadKey();
+
+            //Main thread setting the stopped variable to true.
+            stopped = true; 
             Thread.Sleep(1000);
             Console.WriteLine("Main thread executing...");
         }
+
+        
 
         private static void ExecuteCode7()
         {
