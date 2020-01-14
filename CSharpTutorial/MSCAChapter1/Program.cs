@@ -2,6 +2,7 @@
 using MSCAChapter1.ParameterizedThread;
 using MSCAChapter1.StoppingThread;
 using MSCAChapter1.ThreadPerformance;
+using MSCAChapter1.ThreadPoolTutorial;
 using MSCAChapter1.ThreadSleeping;
 using System;
 using System.Diagnostics;
@@ -17,6 +18,8 @@ namespace MSCAChapter1
 
         [ThreadStatic]
         private static string PersonName;
+
+        private static ThreadLocal<string> field = new ThreadLocal<string>(() => Thread.CurrentThread.Name, true);
 
         static void Main(string[] args)
         {
@@ -52,6 +55,13 @@ namespace MSCAChapter1
             ExecuteCode9();
             PromptUserInput();
 
+            //Using ThreadLocal to get and set values uniquely for each thread (including main thread)
+            ExecuteCode10();
+            PromptUserInput();
+
+            //Using ThreadPool to spin off new threads or use existing threads from the pool to execute a task/workitem.
+            ExecuteCode11();
+            PromptUserInput();
 
             //Background thread example
             /** NOTE for running below code:
@@ -60,6 +70,43 @@ namespace MSCAChapter1
              * The Solution is to place ExecuteCode5(); call at the very bottom of the main method. Make sure no other loc is executed after that call.
              * */
             ExecuteCode5();
+        }
+
+        private static void ExecuteCode11()
+        {
+            ThreadPoolExample.PerformParallelTasks();
+        }
+
+        private static void ExecuteCode10()
+        {
+            //with the ThreadLocal variable, we can set a value that would relate to the Thread.CurrentThread.Name returned in the field variable
+
+            //set current thread name's value for main thread
+            field.Value = "Main";
+
+            Thread thread1 = new Thread(new ThreadStart(
+                    () =>
+                    {
+                        field.Value = "Thread 1";           //set current thread name's value for thread1
+                        var thread1Context = field.Value;
+                    }
+                ));
+            thread1.Start();
+            //thread1.Name = "Thread 1";
+            thread1.Join();
+
+            Thread thread2 = new Thread(new ThreadStart(
+                    () =>
+                    {
+                        field.Value = "Thread 2";           //set current thread name's value for thread2
+                        var thread2Context = field.Value;
+                    }
+                ));
+            thread2.Start();
+            //thread2.Name = "Thread 2";
+            thread2.Join();
+
+            Console.ReadKey();
         }
 
         private static void ExecuteCode9()

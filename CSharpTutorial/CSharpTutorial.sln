@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdapterPart2", "AdapterPart
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MSCAChapter1", "MSCAChapter1\MSCAChapter1.csproj", "{8F6B7370-6C1D-472A-9405-405705020F50}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Random", "Random\Random.csproj", "{05BBAF57-0791-453F-B0CB-0F07FA11FDC3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{8F6B7370-6C1D-472A-9405-405705020F50}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F6B7370-6C1D-472A-9405-405705020F50}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F6B7370-6C1D-472A-9405-405705020F50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05BBAF57-0791-453F-B0CB-0F07FA11FDC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05BBAF57-0791-453F-B0CB-0F07FA11FDC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05BBAF57-0791-453F-B0CB-0F07FA11FDC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05BBAF57-0791-453F-B0CB-0F07FA11FDC3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
