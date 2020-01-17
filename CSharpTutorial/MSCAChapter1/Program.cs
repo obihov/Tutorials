@@ -1,6 +1,7 @@
 ﻿using MSCAChapter1.BackgroundForegroundThread;
 using MSCAChapter1.ParameterizedThread;
 using MSCAChapter1.StoppingThread;
+using MSCAChapter1.TaskTutorial;
 using MSCAChapter1.ThreadPerformance;
 using MSCAChapter1.ThreadPoolTutorial;
 using MSCAChapter1.ThreadSleeping;
@@ -63,6 +64,10 @@ namespace MSCAChapter1
             ExecuteCode11();
             PromptUserInput();
 
+            //Using Task class to spin off new threads
+            ExecuteCode12();
+            PromptUserInput();
+
             //Background thread example
             /** NOTE for running below code:
              * This code will print out all messages in childthread, which is not intended for this example.
@@ -70,6 +75,20 @@ namespace MSCAChapter1
              * The Solution is to place ExecuteCode5(); call at the very bottom of the main method. Make sure no other loc is executed after that call.
              * */
             ExecuteCode5();
+        }
+
+        private static void ExecuteCode12()
+        {
+            //ExecuteTask1 and ExecuteTask2 shows how tasks can be created and run
+            TaskExample1.ExecuteTask1();
+            TaskExample1.ExecuteTask2();
+            TaskExample1.ExecuteTask3();
+            TaskExample1.ExecuteTask4();
+            TaskExample1.ExecuteTask5();
+            TaskExample1.ExecuteTask6();
+            TaskExample1.ExecuteTask7().Wait();
+            //ExecuteTask3 shows how to get the result of a task 
+
         }
 
         private static void ExecuteCode11()
