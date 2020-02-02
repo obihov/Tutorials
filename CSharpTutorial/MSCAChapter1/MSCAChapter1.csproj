@@ -52,6 +52,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ThreadPerformance\ThreadPerformanceExample.cs" />
     <Compile Include="ThreadPoolTutorial\ThreadPoolExample.cs" />
+    <Compile Include="ThreadPoolTutorial\ThreadPoolExample2.cs" />
     <Compile Include="ThreadSleeping\ThreadSleepingExample.cs" />
     <Compile Include="ThreadSleeping\ThreadSleepingVaryingExample.cs" />
   </ItemGroup>

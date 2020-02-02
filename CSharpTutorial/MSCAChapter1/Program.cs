@@ -94,6 +94,7 @@ namespace MSCAChapter1
         private static void ExecuteCode11()
         {
             ThreadPoolExample.PerformParallelTasks();
+            ThreadPoolExample2.PerformParallelTasks();
         }
 
         private static void ExecuteCode10()
