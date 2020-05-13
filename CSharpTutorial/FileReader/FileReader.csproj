@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{52E8489E-856D-4AA9-A049-0CDA69CFAD5E}</ProjectGuid>
+    <ProjectGuid>{2792811A-0244-4624-9E63-DD86475035D6}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Encapsulation</RootNamespace>
-    <AssemblyName>Encapsulation</AssemblyName>
+    <RootNamespace>FileReader</RootNamespace>
+    <AssemblyName>FileReader</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
