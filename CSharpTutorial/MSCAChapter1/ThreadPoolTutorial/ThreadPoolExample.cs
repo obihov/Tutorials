@@ -45,6 +45,8 @@ namespace MSCAChapter1.ThreadPoolTutorial
                 SendEmail(_threadInstance.Value.Receipient = "Obi");
             });
 
+            ThreadPool.QueueUserWorkItem(CloseMessage); //or can do  WaitCallback callback = new WaitCallback(CloseMessage); and supply callback as the argument.
+
             //Main Thread
             _threadInstance.Value.CurrentThreadInfo.Name = "Main Thread";
             Console.WriteLine($"Main Thread Info: " + _threadInstance.Value.CurrentThreadInfo.Name);
@@ -58,6 +60,11 @@ namespace MSCAChapter1.ThreadPoolTutorial
         private static void SendEmail(string receipient)
         {
             Console.WriteLine("Sending Email to {0}...", receipient);
+        }
+
+        private static void CloseMessage(object s)
+        {
+            Console.WriteLine("Good bye!");
         }
 
         private class ThreadInstance

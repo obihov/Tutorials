@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{52E8489E-856D-4AA9-A049-0CDA69CFAD5E}</ProjectGuid>
+    <ProjectGuid>{06B255AD-E01E-48BE-812B-A8A246634B75}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Encapsulation</RootNamespace>
-    <AssemblyName>Encapsulation</AssemblyName>
+    <RootNamespace>MSCA_New</RootNamespace>
+    <AssemblyName>MSCA_New</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -65,11 +65,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="0ThreadExample\A_ThreadStart.cs" />
+    <Compile Include="0ThreadExample\B_ParameterizedThreadStart.cs" />
+    <Compile Include="4TaskExample\B_NewTask.cs" />
+    <Compile Include="4TaskExample\A_TaskRun.cs" />
+    <Compile Include="4TaskExample\C_TaskFactory.cs" />
+    <Compile Include="4TaskExample\D_Wait.cs" />
+    <Compile Include="4TaskExample\E_WaitAll.cs" />
+    <Compile Include="4TaskExample\F_WaitAny.cs" />
+    <Compile Include="4TaskExample\G_WhenAll.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="1ThreadStaticExample\" />
+    <Folder Include="2ThreadLocalExample\" />
+    <Folder Include="3ThreadPoolExample\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
