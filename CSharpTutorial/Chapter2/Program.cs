@@ -1,4 +1,6 @@
-﻿using Chapter2.Example_ConstructorChaining;
+﻿using System;
+using Chapter2.Example_AttributesReflection;
+using Chapter2.Example_ConstructorChaining;
 using Chapter2.Example_ConstructorInheritance;
 using Chapter2.Example_Dynamics;
 using Chapter2.Example_Encapsulation;
@@ -59,8 +61,14 @@ namespace Chapter2
             //ComparableExample.Run();
 
             //SortingExample.Run();
-            EnumerableExample.Run();
-            EnumerableExample2.Run();
+            //EnumerableExample.Run();
+            //EnumerableExample2.Run();
+
+            //BasicAttributeExample.Run();
+
+            string invalidDate = "October 15, 2020 9:06 PM";
+            var isValid = DateTime.TryParse(invalidDate, out DateTime validDate);
+            var formattedDate = validDate;
 
 
 

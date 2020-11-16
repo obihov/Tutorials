@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{31873AA0-8920-4629-9D7A-F4F106BDEAB8}</ProjectGuid>
+    <ProjectGuid>{78F78BB5-3A4E-4642-BE16-E7F89CF70A4C}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Chapter1</RootNamespace>
-    <AssemblyName>Chapter1</AssemblyName>
+    <RootNamespace>KinisTutorial</RootNamespace>
+    <AssemblyName>KinisTutorial</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,24 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Obj1_1_ImplementMultithreading\Listing1_1.cs" />
-    <Compile Include="Obj1_1_ImplementMultithreading\Listing1_2.cs" />
-    <Compile Include="Obj1_1_ImplementMultithreading\Listing1_3.cs" />
-    <Compile Include="Obj1_1_ImplementMultithreading\Listing1_4.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Obj1_2_ManageMultithreading\" />
-    <Folder Include="Obj1_3_ImplementProgramFlow\" />
-    <Folder Include="Obj1_4_ImplementEvents\" />
-    <Folder Include="Obj1_5_ExceptionHandling\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Obj1_1_ImplementMultithreading\Note.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

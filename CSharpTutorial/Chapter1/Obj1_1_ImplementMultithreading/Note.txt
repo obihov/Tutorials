@@ -1,0 +1,79 @@
+﻿Applications are becoming more and more complex as user expectations rise. To fully take advantage of multicore systems and stay responsive, you need to create applications that use multiple threads, often called parallelism.
+
+imagine having one CPU and it has to run a task that takes a long time to complete. This could freeze (i.e. block) the application and prevents other applications to be used (in otherwords your system becomes unresponsive).
+To remedy this problem, the concept of a thread is used.
+
+A thread is something like a virtualized CPU. Each application runs in a process. A process gives an application its own virtual memory. 
+And the application's main thread along any other thread it creates within the process can be considered as virtualized CPU for running tasks in parallel. Therefore, each process contains at least one running thread for the application. 
+Process (virtual memory) -> Application's thread (main thread and other thread as Vritual CPU).
+
+If an application crashes (like when a running thread encounters an exception) or hits an infinite loop, only the application’s process is affected. Othe applications running in their own process won't get affected.
+
+Each thread is alowed by Windows to execute for a certain time period after which, the thread is paused and windows switches to another thread - This is called Context Switching
+
+When a thread freezes the application while executing a task, this is consider as - thread blocking. When blocking occurs, Windows will not be able to switch to another thread until the blocking thread is suspended. See thread.sleep or task.Delay.
+
+Window has to do some work to create threads. Even context switching alone uses up memory and CPU registers as well as state data to perform since Windows has to maintain state/context of one or more threads throughout the application's lifetime.
+
+Although it takes some effort to create threads, yet, using threads ensures application don't get blocked (in other words are responsive). 
+
+In addition to making your application more responsive, using threads may make it seem that your application is running faster because more CPUs and cores are used to execute tasks in your application in parallel. 
+However, keep in mind that the overhead of creating threads can hurt your application especially when too many threads are created. Be careful creating too many threads, avoid doing this in a loop flow.
+Creating too many threads will eventually use up the available RAM and CPU in your machine, thus slowing down your application and system in generally, even likely slowing down other components of your system such as Ethernet. 
+Use thread with care and if possible, reuse threads rather than create new ones everytime you need some parallel operation.
+
+The Thread class can be found in the System.Threading namespace. This class enables you to create new treads, manage their priority, and get their status.
+
+The Thread class isn’t something that you should use in your applications, except when you have special needs. However, when using the Thread class you have control 
+over all configuration options.
+
+About Console class
+======================
+Synchronization is the mechanism of ensuring that two threads don’t
+execute a specific portion of your program at the same time. In the case of a console application,
+this means that no two threads can write data to the screen at the exact same time.
+If one thread is working with the output stream, other threads will have to wait before it’s
+finished.
+
+
+About Thread.Sleep
+=====================
+Why the Thread.Sleep(0)? It is used to signal to Windows that this thread is finished and forces window to switch context immediately to another thread.
+If 0 is specified, it means Windows can resume back to executing the thread immediately. 
+Otherwise, if say a value of 5000 is specified, then Windows can only resume back to the thread after 5 seconds has passed.
+So if two threads are executing, and threadA calls thread.Sleep(0) then Windows immediately switches to threadB. 
+But Windows will immediately switch back to threadA again to see if more work needs to be done. 
+But also, if  threadA calls thread.Sleep(5000) then Windows immediately switches to threadB, and even though work in threadB has completed, 
+Window will not switch back to threadA until after 5 secs has elasped before it switches back to threadA.
+Using the thread.Sleep is optional, because Windows has been configured to automatically perform context switching between threads.
+
+About Thread Priority
+=====================
+Both your process and your thread have a priority. Assigning a low priority is useful for
+applications such as a screen saver. Such an application shouldn’t compete with other applications
+for CPU time. A higher-priority thread should be used only when it’s absolutely necessary.
+A new thread is assigned a priority of Normal, which is okay for almost all scenarios
+
+About Foreground and Background threads
+======================================
+Foreground threads keep an application alive. Must set a thread.IsBackground = false.
+Background threads run on the background, if main thread exit before all background threads is completed, then background threads are terminated.
+Main thread is a foreground thread by design. Must use Join, Wait, or perform a synchronize activity like reading a console stream to force a background thread to be alive.
+All threads you create a foreground threads 
+
+Aborting a Thread using Abort method
+=====================================
+You will need two threads to achieve this. Think of this has superman trying to stop a moving train. 
+The moving train is the long running never-ending thread, while superman is your designated thread designed solely to stop the train. 
+So superman thread will have a while loop that waits for user input through console to decide if train thread should stop. 
+The user decision is captured in a variable shared by both the superman thread and train thread. 
+As context switches between the superman and train thread this variable gets checked. 
+And if set to STOP, then the Thread.CurrentThread.Abort method is called inside both threads, thus ending the superman thread as well as the train thread.
+Your superman thread can be the main thread of the application or any other thread (and must remain alive long enough to capture any user input).
+The train thread can be any long-running thread.
+Stopping a thread using the Abort method is not good because it requires another thread to take the responsibility of doing that and because the Abort method
+is executed by another thread, it can happen at any time.
+
+
+
+
