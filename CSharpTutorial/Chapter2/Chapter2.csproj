@@ -105,6 +105,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Example_AttributesReflection\BasicAttributeExample.cs" />
     <Compile Include="Example_Encapsulation\AccessModifierExample.cs" />
     <Compile Include="Example_Encapsulation\AccessModifierExample2.cs" />
     <Compile Include="Example_Encapsulation\ExplicitInterfaceExample.cs" />
