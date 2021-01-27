@@ -75,5 +75,72 @@ Stopping a thread using the Abort method is not good because it requires another
 is executed by another thread, it can happen at any time.
 
 
+ThreadStatic attribute
+======================
+Variables in a thread are unique and local to the thread alone. 
+However with ThreadStatic attribute, a class-field variable can be used by multiple threads but the value of the variable for each thread will be unique just like a local variable is.
+ThreadStatic fields are static fields and can be declared in either a static or reference class type.
 
+
+ThreadLocal<Type> 
+======================
+Similar to the behavior of ThreadStatic fields. Allows same field name to be used across different threads to uniquely store values for each thread. You may store a single value,
+a class instance, or even the execution context of a thread. Different threads will access unique values off the field name.
+
+About thread execution context
+==============================
+so if you create a thread called threadA in main thread, then the execution context of main thread is passed to threadA 
+this way, it allows threadA to have same privileges as the parent/initiating thread (main)
+
+
+Working with ThreadPool for multithreading
+===========================================
+ThreadPool allows you to queue work items for processing. These work-items can be considered as task or request.
+An available thread in the pool will process new request without the need of having to create a new thread. This offers scalability.
+However, because less threads are created (since existing ones are reusued), ThreadPool offers less degree of parallelism as compared to using the Thread class (which has no limit to the number of threads you can create).
+Keep in mind, that it is costly (system-speaking) to always create new threads to handle new request. This why the ThreadPool is good as it offers stability especially for systems with limited resource (i.e. memory).
+
+Advantages of ThreadPool:
+ThreadPool has high scalability of system resources. Meaning, it is able to reusue existing threads to handle new requests. Helps prevent system from maxing out its available resource.
+
+Disadvantages of ThreadPool:
+ThreadPool has less degree of parallelism than using a Thread class
+ThreadPool doesn't have any mechanism that can allow you determine when a running operation has finished and what the return value (if any) is.
+
+Note:
+One thing to be aware of when using ThreadPool is that because threads are being reused, they also reuse their local state. 
+So put simply, when reusing threads to serve new requests, chances are that each request will see the same local state of the thread, which can be an issue.
+You will rather prefer to have a unique state for a thread for each request it process.
+
+
+Working with Task class for multithreading
+============================================
+A Task is an object that represents the work to be done. So a work-item or a request is a task.
+The Task Scheduler is responsible for starting and managing the task. It uses threads from the pool to execute the task.
+
+Advantage:
+Unlike ThreadPool, Task offers a higher degree of parallelism since new threads are used to process new workitems/requests/task.
+Unlike ThreadPool, Task can allow you determine the state of a running operation (i.e. status) and what the return value (if any) is.
+Task can help make your application responsive. Main thread can spin off new threads to handle new tasks, without keeping the main thread blocked. Useful in UI-based applications.
+
+Disadvantage:
+Task does not help with scalability since the task scheduler doesn't reuse existing threads to process it.
+
+Note:
+Thread can be useful for computer-based responsiveness.
+Task can be useful for application-based responsiveness.
+Executing a Task on another thread makes sense only if you want to keep the user interface thread free for other work or if you want to parallelize your work on to multiple processors.
+Executing a new task from within the main thread. This can help keep application responsive. Thread class and ThreadPool class do similar things but they mostly useful in keep computation algorithm/calculations responsive rather than UI.
+
+Result property and ContinueWith task method:
+Use the generic Task<returnType> class to create a task that returns value.
+Use the t.Result property to read the returned value of a task. Calling t.Result from another thread will block that thread, until child thread has completed and returned a value.
+Use the t.ContinueWith to prevent blocking of long running tasks (that may or maynot produce a returned value/result).
+
+Attempting to read the Result property on a Task will force the thread that’s trying to
+read the result to wait until the Task is finished before continuing. As long as the Task has not
+finished, it is impossible to give the result. If the Task is not finished, this call will block the
+current thread. Adding a Continuation task instead of using the Result to process the result of a completed task
+is more efficient. With a Continuation task, the child thread running the task doesn't block the parent thread from which
+the task was initiated off from.
 
