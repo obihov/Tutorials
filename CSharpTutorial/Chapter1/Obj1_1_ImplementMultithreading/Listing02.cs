@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Chapter1.Obj1_1_ImplementMultithreading
 {
-    public static class Listing1_2
+    public static class Listing02
     {
         /// <summary>
         /// Example: Using a background thread without a Join or Wait statement may exit the application immediately if main ends.

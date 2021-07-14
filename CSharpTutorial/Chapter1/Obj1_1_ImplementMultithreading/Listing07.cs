@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Chapter1.Obj1_1_ImplementMultithreading
 {
-    public class Listing1_7
+    public class Listing07
     {
         private static void DoSomething1(object s) => Console.WriteLine("Executed Method 1. Data is {s}");
 
@@ -43,11 +43,11 @@ namespace Chapter1.Obj1_1_ImplementMultithreading
             //Thread A
             ThreadPool.QueueUserWorkItem((s) =>
             {
-                while(SomeField < 11)
+                while(SomeField < 10)
                 {
-                    SomeField++;
+                    SomeField++;    //at 0 the variable will be 1, so at 9 the variable will be 10 etc.
                 }
-                Console.WriteLine($"Thread A - {SomeField}");
+                Console.WriteLine($"Thread A - {SomeField}");   //prints 10
             });
 
             //Thread B
@@ -55,13 +55,13 @@ namespace Chapter1.Obj1_1_ImplementMultithreading
             {
                 while (SomeField < 20)
                 {
-                    SomeField++;
+                    SomeField++;    //at 0 the variable will be 1, so at 19 the variable will be 20 etc.
                 }
-                Console.WriteLine($"Thread B - {SomeField}");
+                Console.WriteLine($"Thread B - {SomeField}");   //prints 20
             });
 
             //Thread Main
-            Console.WriteLine($"Thread Main - {SomeField}");
+            Console.WriteLine($"Thread Main - {SomeField}");    //prints 0
         }
                 
 

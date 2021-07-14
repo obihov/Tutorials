@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Chapter1.Obj1_1_ImplementMultithreading
 {
-    public class Listing1_8
+    public class Listing08
     {
         /// <summary>
         /// This example shows to perform a multithreaded operation that does not return a value using the Task class.
@@ -33,7 +33,7 @@ namespace Chapter1.Obj1_1_ImplementMultithreading
         /// </summary>
         public static void Example2()
         {
-            Task<int> t = Task<int>.Run(() =>
+            Task<int> t = Task.Run<int>(() =>
             {
                 var age = 50;
                 return age;
@@ -87,14 +87,8 @@ namespace Chapter1.Obj1_1_ImplementMultithreading
 
             completedTask.ContinueWith(r =>
             {
-                if (r.Result)
-                {
-                    Console.WriteLine("Younger than 100.");
-                }
-                else
-                {
-                    Console.WriteLine("Older than 100.");
-                }
+                var message = (r.Result) ? "Younger than 100." : "Older than 100.";
+                Console.WriteLine(message);
             });
 
             completedTask.Wait();
