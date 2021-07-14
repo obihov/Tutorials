@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Chapter1.Obj1_1_ImplementMultithreading
 {
-    public static class Listing1_3
+    public static class Listing03
     {
         /// <summary>
         /// Example: Using ParameterizedThreadStart delegate to pass value to a thread's worker method through the Start method.

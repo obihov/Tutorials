@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Chapter1.Obj1_1_ImplementMultithreading
 {
-    public static class Listing1_5
+    public static class Listing05
     {
         [ThreadStatic]//threadStatic field are static
         private static decimal _Cash; //can uniquely store an instance of a variable for each thread using same field name.

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Chapter1.Obj1_1_ImplementMultithreading
 {
-    public static class Listing1_4
+    public static class Listing04
     {
         /// <summary>
         /// Example: Using Thread.CurrentThread.Abort method to stop a thread. NOTE: Not a great way to stop a running thread. 

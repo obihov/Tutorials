@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Chapter1.Obj1_1_ImplementMultithreading
 {
-    public static class Listing1_6
+    public static class Listing06
     {
         private static ThreadLocal<Thread> ThreadInfo = new ThreadLocal<Thread>(() =>
         {

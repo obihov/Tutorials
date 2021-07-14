@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Chapter1.Obj1_1_ImplementMultithreading
 {
-    public static class Listing1_1
+    public static class Listing01
     {
         /// <summary>
         /// Example: Create and run new thread using the Thread class, and keep application's main thread alive while new thread is running.

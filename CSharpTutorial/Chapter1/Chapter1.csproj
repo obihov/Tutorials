@@ -31,7 +31,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-  </PropertyGroup>  
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -43,21 +43,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Obj1_1_ImplementMultithreading\Listing1_1.cs" />
-    <Compile Include="Obj1_1_ImplementMultithreading\Listing1_2.cs" />
-    <Compile Include="Obj1_1_ImplementMultithreading\Listing1_3.cs" />
-    <Compile Include="Obj1_1_ImplementMultithreading\Listing1_4.cs" />
-    <Compile Include="Obj1_1_ImplementMultithreading\Listing1_5.cs" />
-    <Compile Include="Obj1_1_ImplementMultithreading\Listing1_6.cs" />
-    <Compile Include="Obj1_1_ImplementMultithreading\Listing1_6_1.cs" />
-    <Compile Include="Obj1_1_ImplementMultithreading\Listing1_7.cs" />
-    <Compile Include="Obj1_1_ImplementMultithreading\Listing1_8.cs" />
-    <Compile Include="Obj1_1_ImplementMultithreading\Listing1_9.cs" />
+    <Compile Include="Obj1_1_ImplementMultithreading\Listing01.cs" />
+    <Compile Include="Obj1_1_ImplementMultithreading\Listing10.cs" />
+    <Compile Include="Obj1_1_ImplementMultithreading\Listing11.cs" />
+    <Compile Include="Obj1_1_ImplementMultithreading\Listing12.cs" />
+    <Compile Include="Obj1_1_ImplementMultithreading\Listing13.cs" />
+    <Compile Include="Obj1_1_ImplementMultithreading\Listing14.cs" />
+    <Compile Include="Obj1_1_ImplementMultithreading\Listing16.cs" />
+    <Compile Include="Obj1_1_ImplementMultithreading\Listing02.cs" />
+    <Compile Include="Obj1_1_ImplementMultithreading\Listing03.cs" />
+    <Compile Include="Obj1_1_ImplementMultithreading\Listing04.cs" />
+    <Compile Include="Obj1_1_ImplementMultithreading\Listing05.cs" />
+    <Compile Include="Obj1_1_ImplementMultithreading\Listing06.cs" />
+    <Compile Include="Obj1_1_ImplementMultithreading\Listing06_1.cs" />
+    <Compile Include="Obj1_1_ImplementMultithreading\Listing07.cs" />
+    <Compile Include="Obj1_1_ImplementMultithreading\Listing08.cs" />
+    <Compile Include="Obj1_1_ImplementMultithreading\Listing09.cs" />
+    <Compile Include="Obj1_1_ImplementMultithreading\Listing17.cs" />
+    <Compile Include="Obj1_1_ImplementMultithreading\Listing18.cs" />
+    <Compile Include="Obj1_1_ImplementMultithreading\Listing19.cs" />
+    <Compile Include="Obj1_1_ImplementMultithreading\Listing19_1.cs" />
+    <Compile Include="Obj1_1_ImplementMultithreading\Listing20.cs" />
+    <Compile Include="Obj1_1_ImplementMultithreading\Listing21.cs" />
+    <Compile Include="Obj1_1_ImplementMultithreading\Listing22.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Obj1_2_ManageMultithreading\" />
